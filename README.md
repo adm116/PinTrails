@@ -1,6 +1,6 @@
-# 📍 PinTrail
+# 📍 PinTrails
 
-**PinTrail** is a minimalist app to help users save and organize meaningful locations using tags. Built with React Native and Expo, it's perfect for bookmarking your favorite spots and filtering them by tag — fast and clean.
+**PinTrails** is a minimalist app to help users save and organize meaningful locations using tags. Built with React Native and Expo, it's perfect for bookmarking your favorite spots and filtering them by tag — fast and clean.
 
 ---
 
@@ -9,8 +9,8 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/PinTrail.git
-cd PinTrail
+git clone https://github.com/adm116/PinTrails.git
+cd PinTrails
 ```
 
 ### 2. Use the Correct Node Version
@@ -58,7 +58,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-PinTrail/
+PinTrails/
 ├── App.tsx               # Entry point
 ├── assets/               # Icons, images
 ├── components/           # Reusable components (e.g., TagChip, PinCard)
@@ -81,6 +81,43 @@ Pull requests welcome. For major changes, please open an issue first to discuss 
 ## 📄 License
 
 [MIT](LICENSE)
+
+---
+
+## 🧱 Architecture
+
+PinTrails follows a lightweight **MVVM-inspired architecture** using React Native and Expo.
+
+### 📦 Stack Overview
+
+| Layer        | Tool                    | Purpose                                 |
+|--------------|-------------------------|-----------------------------------------|
+| Model        | Firebase + `pinService` | Data layer, Firestore & API integration |
+| ViewModel    | `zustand` store         | State & business logic for components   |
+| View         | React components        | UI rendering via hooks and props        |
+
+### 💡 Why Zustand?
+
+We use [`zustand`](https://github.com/pmndrs/zustand) for state management because it is:
+- Minimal and intuitive (1 function to create a store)
+- Fast and React Native–friendly
+- Boilerplate-free (no reducers or dispatch)
+- A perfect fit for scoped stores like `usePinStore`
+
+This pattern helps us:
+- Keep components clean and focused on UI
+- Centralize logic around pins, tags, and filters
+- Stay scalable as the app grows
+
+Example usage:
+```ts
+const pins = usePinStore(state => state.pins);
+const fetchPins = usePinStore(state => state.fetchPins);
+
+useEffect(() => {
+  fetchPins();
+}, []);
+```
 
 ---
 
