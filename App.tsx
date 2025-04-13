@@ -1,12 +1,12 @@
 import { ThemeProvider } from './contexts/ThemeContext';
-import { ListView } from './screens/ListView';
+import { BottomTabNavigator } from './navigation/BottomTabNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
 	return (
 		<SafeAreaProvider>
 			<ThemeProvider>
-				<ListView />
+				<BottomTabNavigator />
 			</ThemeProvider>
 		</SafeAreaProvider>
 	)
