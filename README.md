@@ -121,6 +121,56 @@ useEffect(() => {
 
 ---
 
+## 📱 Responsive Layouts
+To ensure that the PinTrails UI looks consistent across a wide range of devices (from iPhone SE to iPhone 16 Pro Max), we use custom scaling functions based on a chosen baseline screen size.
+
+### 📐 Baseline Device: iPhone 16
+Our design and scaling logic is anchored on the dimensions of the iPhone 16, which has:
+- Width: **430 points**
+- Height: **932 points**
+
+This allows the app to scale proportionally on both smaller and larger devices.
+
+### 🔧 Custom Scaling Helpers
+
+We define three functions in `utils/scaling.ts`:
+
+```ts
+scale(size)         // Scales horizontally
+verticalScale(size) // Scales vertically
+moderateScale(size) // Scales gently, ideal for font sizes
+```
+
+#### ✅ Use Cases:
+
+| Function             | Description                             | Use For                              |
+|----------------------|-----------------------------------------|--------------------------------------|
+| `scale(size)`         | Scales based on screen width (X axis)   | Horizontal padding, margin, widths   |
+| `verticalScale(size)` | Scales based on screen height (Y axis)  | Top/bottom margin, heights           |
+| `moderateScale(size)` | Partial scale to prevent over-scaling   | Font sizes, compact spacing          |
+
+Each of these methods adjusts the given `size` value relative to the screen dimensions at runtime, making the layout adaptive and consistent.
+
+To use them in your components:
+
+```ts
+import { scale, verticalScale, moderateScale } from '../utils/scaling';
+```
+
+> ⚠️ We do not use the default `react-native-size-matters` helpers because they are hardcoded to a 375x667 baseline and cannot be configured.
+
+This approach gives us full control and aligns directly with the devices we're designing for.
+
+### 🌗 Dark/Light Mode Support
+
+PinTrails automatically adapts to the system's dark or light appearance setting using the `Appearance` API from React Native. We created a custom `ThemeProvider` that listens for changes in the device's color scheme and exposes the current theme (light or dark) via a `useTheme()` hook. All components use theme-aware styles, allowing them to respond dynamically to system changes — even live, without restarting the app. This ensures visual consistency and accessibility across user preferences.
+
+### 📏 Font Scaling
+
+`responsiveSize`, which will render text based on current accessibility font scaling, can be passed by using makeStyles, but for now, this is being skipped as the app seems to respond well already to font scaling without further work. 
+
+---
+
 ## 🛠 macOS Simulator Setup (Optional)
 
 If you'd like to run the iOS simulator (instead of Expo Go on a physical device), make sure your system is using the full version of Xcode — not just the Command Line Tools.

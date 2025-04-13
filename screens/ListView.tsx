@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { FlatList, Text, TextStyle, ViewStyle } from 'react-native';
 import { usePinStore } from '../stores/pinStore';
 import { PinCard } from '../components/PinCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { scale, verticalScale, moderateScale } from '../utils/scaling';
+import { makeStyles } from '../utils/makeStyles';
 
 export const ListView = () => {
     const pins = usePinStore(state => state.pins);
     const fetchPins = usePinStore(state => state.fetchPins);
+	const styles = useStyles();
 
     useEffect(() => {
-        fetchPins(); // Load dummy data
+        fetchPins();
     }, []);
 
     return (
@@ -27,18 +30,25 @@ export const ListView = () => {
     );
 };
 
-const styles = StyleSheet.create({
+type ListViewStyles = {
+	container: ViewStyle;
+	listContent: ViewStyle;
+	title: TextStyle;
+};
+
+const useStyles = makeStyles<ListViewStyles>((theme) => ({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingHorizontal: 16
+        backgroundColor: theme.background,
+        paddingHorizontal: scale(16),
     },
     listContent: {
-        paddingBottom: 32,
+        paddingBottom: verticalScale(32),
     },
     title: {
-        fontSize: 24,
+        fontSize: moderateScale(40),
         fontWeight: 'bold',
-        marginBottom: 16,
+        marginBottom: verticalScale(16),
+		color: theme.textPrimary
     },
-});
+}));
