@@ -5,4 +5,5 @@ export type Pin = {
     tags: string[];
     imageUrl: string;
     addedAgo: string;
+	location: string;
 }

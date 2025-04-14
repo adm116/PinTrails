@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, Image, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { View, Text, Image, ViewStyle, TextStyle, ImageStyle, Pressable } from 'react-native';
 import { Pin } from '../models/pin';
 import { scale, verticalScale, moderateScale } from '../utils/scaling';
 import { makeStyles } from '../utils/makeStyles';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '../navigation/types';
 
 type PinCardProps = {
 	pin: Pin;
@@ -11,36 +13,39 @@ type PinCardProps = {
 export const PinCard = ({ pin }: PinCardProps) => {
 	const { name, description, tags, imageUrl, addedAgo } = pin;
 	const styles = useStyles();
+	const navigation = useNavigation<NavigationProp>();
 
 	return (
-		<View
-			style={styles.card}
-			accessibilityRole="button"
-			accessible
-			accessibilityLabel={`Pin: ${name}`}
-		>
-			<View style={styles.header}>
-				<View style={styles.textBlock}>
-					<Text style={styles.title}>{name}</Text>
-					<View style={styles.tags}>
-						{tags.map((tag, index) => (
-							<Text key={index} style={styles.tag} accessibilityLabel={`Tag: ${tag}`}>
-								{tag}
-							</Text>
-						))}
+		<Pressable onPress={() => navigation.navigate('PinView', { pin })}>
+			<View
+				style={styles.card}
+				accessibilityRole="button"
+				accessible
+				accessibilityLabel={`Pin: ${name}`}
+			>
+				<View style={styles.header}>
+					<View style={styles.textBlock}>
+						<Text style={styles.title}>{name}</Text>
+						<View style={styles.tags}>
+							{tags.map((tag, index) => (
+								<Text key={index} style={styles.tag} accessibilityLabel={`Tag: ${tag}`}>
+									{tag}
+								</Text>
+							))}
+						</View>
 					</View>
+					{imageUrl && (
+						<Image
+							source={{ uri: imageUrl }}
+							style={styles.image}
+							accessibilityLabel={`Image of ${name}`}
+						/>
+					)}
 				</View>
-				{imageUrl && (
-					<Image
-						source={{ uri: imageUrl }}
-						style={styles.image}
-						accessibilityLabel={`Image of ${name}`}
-					/>
-				)}
+				<Text style={styles.description}>{description}</Text>
+				{addedAgo && <Text style={styles.timestamp}>Added on {addedAgo}</Text>}
 			</View>
-			<Text style={styles.description}>{description}</Text>
-			{addedAgo && <Text style={styles.timestamp}>Added on {addedAgo}</Text>}
-		</View>
+		</Pressable>
 	);
 };
 

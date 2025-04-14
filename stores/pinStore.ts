@@ -18,6 +18,7 @@ export const usePinStore = create<PinStore>((set) => ({
                     tags: ['☕ Coffee', 'Remote Work'],
                     imageUrl: 'https://picsum.photos/200/200?random=1',
                     addedAgo: '2 days ago',
+					location: "New York, NY"
                 },
                 {
                     id: '2',
@@ -26,6 +27,7 @@ export const usePinStore = create<PinStore>((set) => ({
                     tags: ['🌉 Landmark', 'View'],
                     imageUrl: 'https://picsum.photos/200/200?random=2',
                     addedAgo: '5 days ago',
+					location: "San Francisco, CA"
                 },
 				{
 					id: '3',
@@ -34,6 +36,7 @@ export const usePinStore = create<PinStore>((set) => ({
 					tags: ['🍽️ Date Night', 'Cocktails'],
 					imageUrl: 'https://picsum.photos/200/200?random=3',
 					addedAgo: '1 week ago',
+					location: "Paris, France"
 				},
 				{
 					id: '4',
@@ -42,6 +45,7 @@ export const usePinStore = create<PinStore>((set) => ({
 					tags: ['🌲 Nature', 'Walkable'],
 					imageUrl: 'https://picsum.photos/200/200?random=4',
 					addedAgo: '4 days ago',
+					location: "Seattle, WA"
 				},
 				{
 					id: '5',
@@ -50,6 +54,7 @@ export const usePinStore = create<PinStore>((set) => ({
 					tags: ['📚 Hidden Gem', 'Cocktails'],
 					imageUrl: 'https://picsum.photos/200/200?random=5',
 					addedAgo: '3 days ago',
+					location: "Redmond, WA"
 				},
             ],
         });
