@@ -26,12 +26,12 @@ export const PinView = () => {
 			<Header
 				leftItem={
 					<Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-						<Ionicons name="chevron-back" size={scale(30)} color={theme.textPrimary} />
+						<Ionicons name="chevron-back" size={scale(30)} color={theme.accentColor} />
 					</Pressable>
 				}
 				rightItem={
 					<Pressable onPress={() => console.log('Edit pressed')} style={styles.editButton}>
-						<Ionicons name="create-outline" size={scale(30)} color={theme.textPrimary} />
+						<Ionicons name="create-outline" size={scale(30)} color={theme.accentColor} />
 					</Pressable>
 				}
 			/>

@@ -1,10 +1,10 @@
 export const lightTheme = {
-    background: '#FFFFFF',
-    surface: '#F2F2F7',
+    background: '#F2F2F7',
+    surface: '#FFFFFF',
     cards: '#FFFFFF',
     textPrimary: '#000000',
     textSecondary: 'rgba(60, 60, 67, 0.6)', // 60% opacity black
-    accentColor: '#007AFF',
+    accentColor: '#FF6B6B',
 };
 
 export const darkTheme = {
@@ -13,5 +13,5 @@ export const darkTheme = {
     cards: '#2C2C2E',
     textPrimary: '#FFFFFF',
     textSecondary: 'rgba(235, 235, 245, 0.6)', // 60% opacity white
-    accentColor: '#0A84FF',
+    accentColor: '#FF6B6B',
 };

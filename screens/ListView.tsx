@@ -9,12 +9,14 @@ import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { ListStackNavigationProp } from '../navigation/types';
 import { Header } from '../components/Header';
+import { useTheme } from '../hooks/useTheme';
 
 export const ListView = () => {
     const pins = usePinStore(state => state.pins);
     const fetchPins = usePinStore(state => state.fetchPins);
     const navigation = useNavigation<ListStackNavigationProp>();
 	const styles = useStyles();
+	const theme = useTheme();
 
     useEffect(() => {
         fetchPins();
@@ -29,7 +31,7 @@ export const ListView = () => {
 						accessibilityLabel="Add new pin"
 						style={styles.addButton}
                 	>
-                    	<Ionicons name="add" size={28} color={styles.title.color} />
+                    	<Ionicons name="add" size={28} color={theme.accentColor} />
                 	</Pressable>
 				}
             />
