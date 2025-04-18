@@ -12,9 +12,9 @@ export const RootStackNavigator = () => {
 	return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!user ? (
-        <Stack.Screen name="Login" component={LoginView} />
+        <Stack.Screen name="LoginView" component={LoginView} />
       ) : (
-        <Stack.Screen name="Main" component={BottomTabNavigator} />
+        <Stack.Screen name="MainView" component={BottomTabNavigator} />
       )}
     </Stack.Navigator>
   );

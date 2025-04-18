@@ -1,17 +1,17 @@
 export const lightTheme = {
     background: '#FFFFFF',
-    surface: '#F3F3F3',
+    surface: '#F2F2F7',
+    cards: '#FFFFFF',
     textPrimary: '#000000',
-    textSecondary: '#555555',
-    textMuted: '#888888',
-    secondaryBackground: '#E0E0E0',
+    textSecondary: 'rgba(60, 60, 67, 0.6)', // 60% opacity black
+    accentColor: '#007AFF',
 };
 
 export const darkTheme = {
-    background: '#121212',
-    surface: '#1E1E1E',
+    background: '#000000',
+    surface: '#1C1C1E',
+    cards: '#2C2C2E',
     textPrimary: '#FFFFFF',
-    textSecondary: '#CCCCCC',
-    textMuted: '#AAAAAA',
-    secondaryBackground: '#333333',
+    textSecondary: 'rgba(235, 235, 245, 0.6)', // 60% opacity white
+    accentColor: '#0A84FF',
 };

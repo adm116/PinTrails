@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../hooks/useTheme';
 import { ListStackNavigator } from './ListStackNavigator';
@@ -15,8 +14,8 @@ export const BottomTabNavigator = () => {
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
 				headerShown: false,
-				tabBarActiveTintColor: theme.textPrimary,
-				tabBarInactiveTintColor: theme.textMuted,
+				tabBarActiveTintColor: theme.accentColor,
+				tabBarInactiveTintColor: theme.textSecondary,
 				tabBarStyle: {
 					backgroundColor: theme.surface,
 					borderTopWidth: 0
@@ -24,7 +23,7 @@ export const BottomTabNavigator = () => {
 			})}
 		>
 			<Tab.Screen
-				name="List"
+				name="ListTab"
 				component={ListStackNavigator}
 				options={{
 					tabBarIcon: ({ color, size }) => (

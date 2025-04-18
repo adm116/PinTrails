@@ -4,7 +4,8 @@ import { Pin } from '../models/pin';
 import { scale, verticalScale, moderateScale } from '../utils/scaling';
 import { makeStyles } from '../utils/makeStyles';
 import { useNavigation } from '@react-navigation/native';
-import { NavigationProp } from '../navigation/types';
+import { ListStackNavigationProp } from '../navigation/types';
+import { Tag } from './Tag';
 
 type PinCardProps = {
 	pin: Pin;
@@ -13,7 +14,7 @@ type PinCardProps = {
 export const PinCard = ({ pin }: PinCardProps) => {
 	const { name, description, tags, imageUrl, addedAgo } = pin;
 	const styles = useStyles();
-	const navigation = useNavigation<NavigationProp>();
+	const navigation = useNavigation<ListStackNavigationProp>();
 
 	return (
 		<Pressable onPress={() => navigation.navigate('PinView', { pin })}>
@@ -28,9 +29,7 @@ export const PinCard = ({ pin }: PinCardProps) => {
 						<Text style={styles.title}>{name}</Text>
 						<View style={styles.tags}>
 							{tags.map((tag, index) => (
-								<Text key={index} style={styles.tag} accessibilityLabel={`Tag: ${tag}`}>
-									{tag}
-								</Text>
+								<Tag tag={tag} key={index}/>
 							))}
 						</View>
 					</View>
@@ -94,7 +93,7 @@ const useStyles = makeStyles<PinCardStyles>((theme) => ({
 	},
 	tag: {
 		fontSize: moderateScale(12),
-		backgroundColor: theme.secondaryBackground,
+		backgroundColor: theme.accentColor,
 		color: theme.textPrimary,
 		borderRadius: scale(16),
 		paddingHorizontal: scale(10),
@@ -104,12 +103,12 @@ const useStyles = makeStyles<PinCardStyles>((theme) => ({
 	},
 	description: {
 		fontSize: moderateScale(14),
-		color: theme.textSecondary,
+		color: theme.textPrimary,
 		marginTop: verticalScale(8),
 	},
 	timestamp: {
 		fontSize: moderateScale(12),
-		color: theme.textMuted,
+		color: theme.textSecondary,
 		marginTop: verticalScale(4),
 	},
 	image: {
